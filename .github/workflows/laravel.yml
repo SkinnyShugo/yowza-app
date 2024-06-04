@@ -21,7 +21,7 @@ jobs:
       run: composer install --prefer-dist --no-interaction
 
     - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', ('.env')"
+      run: php -r "file_exists('.env') || copy('.env.example', ('.env');"
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
