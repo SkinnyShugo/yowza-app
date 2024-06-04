@@ -26,6 +26,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\RSVPController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MarketplaceCategoryController;
+use App\Http\Controllers\Contact\ContactFormController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -43,33 +44,36 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('lessons/{course_id}/{slug}', [App\Http\Controllers\Yowza\LessonController::class, 'show'])->name('lessons.show');
     Route::post('lesson/{slug}/test', [App\Http\Controllers\Yowza\LessonController::class, 'test'])->name('lessons.test');
 
+    //Contact Form for user loggedIn
+    Route::get('/contact-form', [ContactFormController::class, 'showContactForm'])->name('contact-form');
+    Route::post('/contact-form', [ContactFormController::class, 'submit'])->name('contact-form.submit');
 
     Route::group(['middleware' => ['isAdmin'], 'prefix' => 'admin/{prefix}', 'as' => 'admin.'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
         Route::get('/post/all', [PostController::class, 'allBlogPost'])->name('post.all_blog_post');
         Route::post('/post', [PostController::class, 'store'])->name('post.store');
-        Route::get('/post/{id}',[PostController::class,'show'])->name('admin.post.show');
+        Route::get('/post/{id}', [PostController::class, 'show'])->name('admin.post.show');
         Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
-        Route::put('/post/update/{id}',[PostController::class,'update'])->name('post.update');
-        Route::delete('/post/{id}/delete', [PostController::class,'destroy'])->name('post.destroy');
+        Route::put('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
+        Route::delete('/post/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
         Route::get('admin/post/draft', [PostController::class, 'draftPost'])->name('post.draft');
         Route::get('admin/post/pending_review', [PostController::class, 'pending_review_posts'])->name('post.pending_review_posts');
         //Category Routes
-        Route::controller(CategoryController::class)->group(function(){
-           Route::get('/category/all','AllCategory')->name('all.category');
-           Route::get('/category/create','CreateCategory')->name('category.create');
-           Route::post('/category','store')->name('category.store');
-           Route::get('/category/{id}/edit','edit')->name('category.edit');
-           Route::put('/category/update/{id}','update')->name('category.update');
-           Route::delete('/category/{id}/delete','destroy')->name('category.destroy');
-            Route::get('/events/all', [EventController::class,'all_events']); //
+        Route::controller(CategoryController::class)->group(function () {
+            Route::get('/category/all', 'AllCategory')->name('all.category');
+            Route::get('/category/create', 'CreateCategory')->name('category.create');
+            Route::post('/category', 'store')->name('category.store');
+            Route::get('/category/{id}/edit', 'edit')->name('category.edit');
+            Route::put('/category/update/{id}', 'update')->name('category.update');
+            Route::delete('/category/{id}/delete', 'destroy')->name('category.destroy');
+            Route::get('/events/all', [EventController::class, 'all_events']); //
         });
 
 
 
         // Events Routes
-        Route::controller(EventController::class)->group(function() {
+        Route::controller(EventController::class)->group(function () {
             // Only create, edit, update, and delete routes
             Route::get('/events/create', 'create')->name('events.create'); // Show form to create event
             Route::post('/events', 'store')->name('events.store'); // Store a new event
@@ -83,13 +87,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/document-library', DocumentLibraryController::class);
         Route::post('/document-library/post', [DocumentLibraryController::class, 'store'])->name('library.store');
         Route::get('library/{document}', [DocumentLibraryController::class, 'view'])->name('documents.view');
-//        Route::get('library/{document}/download', [DocumentLibraryController::class, 'download'])
+        //        Route::get('library/{document}/download', [DocumentLibraryController::class, 'download'])
 //            ->name('documents.download');
 //      Route::get('document-library/download/{id}', 'DocumentLibraryController@download');
         Route::get('download/{id}', 'App\Http\Controllers\Admin\DocumentLibraryController@downloadFile')->name('download');
 
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-//        Route::get('/admin/{prefix}/users/{user}/edit', 'UserController@edit')->name('admin.users.edit');
+        //        Route::get('/admin/{prefix}/users/{user}/edit', 'UserController@edit')->name('admin.users.edit');
 
 
 
@@ -100,16 +104,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('courses_restore/{id}', [\App\Http\Controllers\Admin\CourseController::class, 'restore'])->name('courses.restore');
 
         Route::resource('lessons', \App\Http\Controllers\Admin\LessonController::class);
-        Route::post('lessons_restore/{id}', [\App\Http\Controllers\Admin\LessonController::class,'restore'])->name('lessons.restore');
-        Route::delete('lessons_perma_del/{id}', [\App\Http\Controllers\Admin\LessonController::class,'perma_del'])->name('lessons.perma_del');
+        Route::post('lessons_restore/{id}', [\App\Http\Controllers\Admin\LessonController::class, 'restore'])->name('lessons.restore');
+        Route::delete('lessons_perma_del/{id}', [\App\Http\Controllers\Admin\LessonController::class, 'perma_del'])->name('lessons.perma_del');
 
         Route::resource('tests', \App\Http\Controllers\Admin\TestController::class);
-        Route::post('tests_restore/{id}', [\App\Http\Controllers\Admin\TestController::class,'restore'])->name('tests.restore');
-        Route::delete('tests_perma_del/{id}', [\App\Http\Controllers\Admin\TestController::class,'perma_del'])->name('tests.perma_del');
+        Route::post('tests_restore/{id}', [\App\Http\Controllers\Admin\TestController::class, 'restore'])->name('tests.restore');
+        Route::delete('tests_perma_del/{id}', [\App\Http\Controllers\Admin\TestController::class, 'perma_del'])->name('tests.perma_del');
 
         Route::resource('questions', \App\Http\Controllers\Admin\QuestionController::class);
-        Route::post('questions_restore/{id}', [\App\Http\Controllers\Admin\QuestionController::class,'restore'])->name('questions.restore');
-        Route::delete('questions_perma_del/{id}', [\App\Http\Controllers\Admin\QuestionController::class,'perma_del'])->name('questions.perma_del');
+        Route::post('questions_restore/{id}', [\App\Http\Controllers\Admin\QuestionController::class, 'restore'])->name('questions.restore');
+        Route::delete('questions_perma_del/{id}', [\App\Http\Controllers\Admin\QuestionController::class, 'perma_del'])->name('questions.perma_del');
 
         Route::resource('question_options', \App\Http\Controllers\Admin\QuestionOptionController::class);
         Route::post('question_options_restore/{id}', [\App\Http\Controllers\Admin\QuestionOptionController::class, 'restore'])->name('question_options.restore');
@@ -150,7 +154,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-//end of Admin Prefix
+//Contact Form url:
+Route::get('/contact-form', [ContactFormController::class, 'showContactForm'])->name('contact-form');
+Route::post('/contact-form', [ContactFormController::class, 'submit'])->name('contact-form.submit');
+
 
 //Blog post Layouts
 Route::prefix('blog')->group(function () {
@@ -158,8 +165,8 @@ Route::prefix('blog')->group(function () {
 })->middleware('auth');
 
 // Additional custom route for all events
-Route::get('/events/', [EventController::class,'index'])->name('events.index')->middleware('auth');
-Route::get('/events/show/{event}', [EventController::class,'show'])->name('events.show')->middleware('auth');
+Route::get('/events/', [EventController::class, 'index'])->name('events.index')->middleware('auth');
+Route::get('/events/show/{event}', [EventController::class, 'show'])->name('events.show')->middleware('auth');
 
 
 //Route for RSVP
@@ -168,13 +175,13 @@ Route::post('/rsvp/cancel', [RSVPController::class, 'cancel'])->name('rsvp.cance
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route for Marketplace
-Route::middleware(['auth'])->prefix('marketplace')->group(function() {
-    Route::controller(StoreController::class)->group(function() {
+Route::middleware(['auth'])->prefix('marketplace')->group(function () {
+    Route::controller(StoreController::class)->group(function () {
         Route::get('/', 'index')->name('marketplace.store.index');
     });
 });
 
-Route::get('marketplace_categories',[MarketplaceCategoryController::class,'index'])->name('marketplace.index');
+Route::get('marketplace_categories', [MarketplaceCategoryController::class, 'index'])->name('marketplace.index');
 //Route::get('faq', function () {
 //    return view('helpdesk.faq');
 //})->name('faq');
@@ -189,7 +196,7 @@ Route::post('/create-workspace', 'OrganisationWorkspaceController@store')->name(
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/workspace-test', function(){
+Route::get('/workspace-test', function () {
     return view('workspace.register_workspace');
 });
 
