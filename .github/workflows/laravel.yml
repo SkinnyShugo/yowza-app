@@ -26,6 +26,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
+        timeout: 7200
         server: dev.yowza.co.za
         username: devyodgpja
         password: fvA0KV8FksSuTI9rT0fv
