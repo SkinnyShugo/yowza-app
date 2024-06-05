@@ -77,3 +77,8 @@ jobs:
         username: devyodgpja
         password: fvA0KV8FksSuTI9rT0fv
         server-dir: /public_html/
+        retries: 5
+        retry-backoff: 3000
+        protocol: ftps
+        port: 21
+        timeout: 60
