@@ -22,7 +22,7 @@ jobs:
       run: php artisan migrate:fresh --seed --force
 
     - name: Permissions assign Setup
-      run: php artisan permissions:assign --force
+      run: php artisan assign:permission --force
 
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
