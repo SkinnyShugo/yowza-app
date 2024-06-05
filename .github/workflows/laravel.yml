@@ -21,9 +21,6 @@ jobs:
     - name: Migration
       run: php artisan migrate --seed --force
 
-    - name: Database Seeder Setup
-      run: php artisan db:seed --force
-
     - name: Permissions assign Setup
       run: php artisan permissions:assign --force
 
