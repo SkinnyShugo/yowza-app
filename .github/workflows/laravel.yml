@@ -19,7 +19,7 @@ jobs:
       run: php artisan key:generate
 
     - name: Migration
-      run: php artisan migrate --seed --force
+      run: php artisan migrate:fresh --seed --force
 
     - name: Permissions assign Setup
       run: php artisan permissions:assign --force
