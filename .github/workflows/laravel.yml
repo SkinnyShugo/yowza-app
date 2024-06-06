@@ -80,7 +80,7 @@ jobs:
         protocol: ftp
         port: 21
         timeout: 300
-        log-level: debug
+        log-level: verbose
       
       # retry: 
       #   max_attempts: 5
