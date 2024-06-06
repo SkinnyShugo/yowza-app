@@ -12,10 +12,10 @@
                     Welcome Back, <span class="font-semibold">{{ Auth::user()->name }}</span>
                 </h3>
                 <p class="mt-2 leading-relaxed">
-                    Your student completed
-                    <span class="font-semibold text-navy-700">85%</span> of tasks
+                    Your SMME Dashboard to help you grow your business
+                    <!-- <span class="font-semibold text-navy-700">85%</span> of tasks -->
                 </p>
-                <p>Progress is <span class="font-semibold">excellent!</span></p>
+                <!-- <p>Progress is <span class="font-semibold">excellent!</span></p> -->
 
                 <button
                     class="btn mt-6 bg-slate-50 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80">

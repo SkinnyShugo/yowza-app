@@ -200,3 +200,7 @@ Route::get('/workspace-test', function () {
     return view('workspace.register_workspace');
 });
 
+Route::get('lesson-course', function() {
+    return view('yowzacampus.lessons.home');
+});
+

@@ -583,7 +583,7 @@
 
     <!-- Basic Page Needs
     ================================================== -->
-    <title>Courseplus Template</title>
+    <title>Yowza Campus</title>
     <meta charset="utf-8">
     <style data-styles="">
         ion-icon {
@@ -600,14 +600,19 @@
     <!-- Favicon -->
     <link href="../assets/images/favicon.png" rel="icon" type="image/png">
 
-    <!-- icons
-    ================================================== -->
-    <link rel="stylesheet" href="../assets/css/icons.css">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/icons.css') }}">
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="../assets/css/uikit.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/uikit.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ secure_asset('backend/assets/css/icons.css') }}">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ secure_asset('backend/assets/css/uikit.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('backend/assets/css/style.css') }}">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"
@@ -868,11 +873,11 @@
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="../assets/js/uikit.js"></script>
-    <script src="../assets/js/tippy.all.min.js"></script>
-    <script src="../assets/js/simplebar.js"></script>
-    <script src="../assets/js/custom.js"></script>
-    <script src="../assets/js/bootstrap-select.min.js"></script>
+    <script src="{{ asset('backend/assets/js/uikit.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/tippy.all.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/simplebar.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('backendassets/js/bootstrap-select.min.js') }}"></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
 
