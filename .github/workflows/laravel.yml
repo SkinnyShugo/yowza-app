@@ -77,17 +77,18 @@ jobs:
         username: devyodgpja
         password: fvA0KV8FksSuTI9rT0fv
         server-dir: /public_html/
+        strip_components: 1
         protocol: ftp
         port: 21
-        timeout: 400
+        timeout: 1000
         log-level: verbose
         exclude: |
           **/node_modules/**,
           **/vendor/**,
           **/.git/**,
           **/tests/**,
-          **/storage/**
-
+          **/storage/**      
+        
     - name: Keep-Alive Command
       run: |
           while true; do echo "Keeping connection alive"; sleep 300; done &
