@@ -644,7 +644,7 @@
             </div>
 
             <!-- title -->
-            <h1 class="lg:text-2xl text-lg font-bold mt-2 line-clamp-2"> Learn Responsive Web Design Essentials </h1>
+            <h1 class="lg:text-2xl text-lg font-bold mt-2 line-clamp-2">Learn Responsive Web Design Essentials </h1>
 
             <!-- sidebar list -->
             <div class="sidebar_inner is-watch-2" data-simplebar="init">
@@ -662,7 +662,7 @@
                                         <div class="w-2/4 h-full bg-green-500"></div>
                                     </div>
                                     <div class="mt-2 mb-3 text-sm border-b pb-3">
-                                        <div> 46% Complete</div>
+                                        <div> 0% Complete</div>
                                         <div> Last activity on April 20, 2021</div>
                                     </div>
                                 </div>
@@ -672,8 +672,8 @@
 
                                         <div class="uk-open">
                                             <a class="uk-accordion-title text-md mx-2 font-semibold" href="#">
-                                                <div class="mb-1 text-sm font-medium"> Section 1 </div> Html
-                                                Introduction
+                                                <div class="mb-1 text-sm font-medium"> Section 1 </div>
+                                                {{ $lesson->title }}
                                             </a>
                                             <div class="uk-accordion-content mt-3" aria-hidden="false">
 
@@ -707,7 +707,95 @@
                                                             Brain Streak <span class="hidden"> 5 min </span>
                                                         </a>
                                                     </li>
+
+                                                    <!-- Navigation buttons and lesson cards -->
+                                                    <div class="space-y-4 my-5">
+                                                        @if($purchased_course)
+                                                            @if ($previous_lesson)
+                                                                <div class="swiper-button-prev watch-prev-icon"
+                                                                    style="left: 10px; right: initial; bottom: 0px; border-radius: 50%;">
+                                                                    <a
+                                                                        href="{{ route('lessons.show', [$previous_lesson->course_id, $previous_lesson->slug]) }}">
+                                                                        <i class="bx bx-left-arrow-alt"></i>
+                                                                    </a>
+                                                                </div>
+                                                            @endif
+                                                            @if ($next_lesson)
+                                                                <div class="swiper-button-next watch-next-icon"
+                                                                    style="right: 10px; left: initial; bottom: 0px; border-radius: 50%;">
+                                                                    <a
+                                                                        href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}">
+                                                                        <i class="bx bx-right-arrow-alt"></i>
+                                                                    </a>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                        <br>
+
+                                                        @foreach ($lesson->course->publishedLessons as $publishedLesson)
+                                                            @if ($publishedLesson->free_lesson)
+                                                                <div
+                                                                    class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
+                                                                    <img src="{{ Storage::url($publishedLesson->course->course_image) }}"
+                                                                        alt="" class="rounded-full shadow w-12 h-12">
+                                                                    <div
+                                                                        class="flex justify-center items-center absolute right-5 top-6 space-x-1 text-yellow-500">
+                                                                        <ion-icon name="star" role="img" class="md hydrated"
+                                                                            aria-label="star"></ion-icon>
+                                                                        <ion-icon name="star" role="img" class="md hydrated"
+                                                                            aria-label="star"></ion-icon>
+                                                                        <ion-icon name="star" role="img" class="md hydrated"
+                                                                            aria-label="star"></ion-icon>
+                                                                        <ion-icon name="star" role="img" class="md hydrated"
+                                                                            aria-label="star"></ion-icon>
+                                                                        <ion-icon name="star" role="img" class="md hydrated"
+                                                                            aria-label="star"></ion-icon>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4 class="text-base m-0 font-semibold">
+                                                                            <a
+                                                                                href="{{ route('lessons.show', [$publishedLesson->course_id, $publishedLesson->slug]) }}">
+                                                                                {{ $publishedLesson->title }}
+                                                                            </a>
+                                                                        </h4>
+                                                                        <span class="text-gray-700 text-sm"></span>
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                @if($purchased_course)
+                                                                    <div
+                                                                        class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
+                                                                        <img src="{{ Storage::url($publishedLesson->course->course_image) }}"
+                                                                            alt="" class="rounded-full shadow w-12 h-12">
+                                                                        <div
+                                                                            class="flex justify-center items-center absolute right-5 top-6 space-x-1 text-yellow-500">
+                                                                            <ion-icon name="star" role="img" class="md hydrated"
+                                                                                aria-label="star"></ion-icon>
+                                                                            <ion-icon name="star" role="img" class="md hydrated"
+                                                                                aria-label="star"></ion-icon>
+                                                                            <ion-icon name="star" role="img" class="md hydrated"
+                                                                                aria-label="star"></ion-icon>
+                                                                            <ion-icon name="star" role="img" class="md hydrated"
+                                                                                aria-label="star"></ion-icon>
+                                                                            <ion-icon name="star" role="img" class="md hydrated"
+                                                                                aria-label="star"></ion-icon>
+                                                                        </div>
+                                                                        <div>
+                                                                            <h4 class="text-base m-0 font-semibold">
+                                                                                <a
+                                                                                    href="{{ route('lessons.show', [$publishedLesson->course_id, $publishedLesson->slug]) }}">
+                                                                                    {{ $publishedLesson->title }}
+                                                                                </a>
+                                                                            </h4>
+                                                                            <span class="text-gray-700 text-sm"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
                                                 </ul>
+
 
                                             </div>
                                         </div>

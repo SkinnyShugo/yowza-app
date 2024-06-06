@@ -77,10 +77,9 @@ jobs:
         username: devyodgpja
         password: fvA0KV8FksSuTI9rT0fv
         server-dir: /public_html/
-        strip_components: 1
         protocol: ftp
         port: 21
-        timeout: 1000
+        timeout: 60000
         log-level: verbose
         exclude: |
           **/node_modules/**,

@@ -15,7 +15,7 @@
             </div>
 
         </li>
-        <li>
+        <!-- <li>
             <div class="embed-video">
                 <iframe src="https://www.youtube.com/embed/dDn9uw7N9Xg" frameborder="0" allowfullscreen=""
                     uk-responsive="" class="uk-responsive-width"></iframe>
@@ -44,7 +44,7 @@
                 <iframe src="https://www.youtube.com/embed/CPcS4HtrUEU" frameborder="0" allowfullscreen=""
                     uk-responsive="" class="uk-responsive-width"></iframe>
             </div>
-        </li>
+        </li> -->
 
     </ul>
 

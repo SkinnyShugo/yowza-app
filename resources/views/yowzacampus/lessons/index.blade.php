@@ -1,297 +1,270 @@
-@extends('layouts.master_dashboard_layout')
-@section('main_content')
-
-<div class="grid grid-cols-6 lg:gap-6">
+@extends('layouts.lesson')
+@section('content')
 
 
-    <div class=" p-6 md:m-0 -mx-5 col-span-12 pt-6 lg:col-span-8 lg:pb-6">
 
-        <div class="card tube-card p-4 lg:p-6">
-            <div class="embed-video rounded -mx-6 -mt-6 lg:m-0">
+<div class="relative">
+
+    <ul class="uk-switcher relative z-10" id="video_tabs" style="touch-action: pan-y pinch-zoom;">
+
+        <li class="uk-active">
+            <!-- to autoplay video uk-video="automute: true" -->
+            <div class="embed-video">
                 <iframe src="https://www.youtube.com/embed/{{ $lesson->embed_id }}" frameborder="0"
                     uk-video="automute: true" allowfullscreen="" uk-responsive="" class="uk-responsive-width"></iframe>
             </div>
 
-            <div class="py-5 space-y-4">
+        </li>
+        <!-- <li>
+            <div class="embed-video">
+                <iframe src="https://www.youtube.com/embed/dDn9uw7N9Xg" frameborder="0" allowfullscreen=""
+                    uk-responsive="" class="uk-responsive-width"></iframe>
+            </div>
+        </li>
+        <li>
+            <div class="embed-video">
+                <iframe src="https://www.youtube.com/embed/CGSdK7FI9MY" frameborder="0" allowfullscreen=""
+                    uk-responsive="" class="uk-responsive-width"></iframe>
+            </div>
+        </li>
+        <li>
+            <div class="embed-video">
+                <iframe src="https://www.youtube.com/embed/4I1WgJz_lmA" frameborder="0" allowfullscreen=""
+                    uk-responsive="" class="uk-responsive-width"></iframe>
+            </div>
+        </li>
+        <li>
+            <div class="embed-video">
+                <iframe src="https://www.youtube.com/embed/dDn9uw7N9Xg" frameborder="0" allowfullscreen=""
+                    uk-responsive="" class="uk-responsive-width"></iframe>
+            </div>
+        </li>
+        <li>
+            <div class="embed-video">
+                <iframe src="https://www.youtube.com/embed/CPcS4HtrUEU" frameborder="0" allowfullscreen=""
+                    uk-responsive="" class="uk-responsive-width"></iframe>
+            </div>
+        </li> -->
 
+    </ul>
+
+    <div class="bg-gray-200 w-full h-full absolute inset-0 animate-pulse"></div>
+
+</div>
+
+<nav class="cd-secondary-nav border-b md:p-0 lg:px-6 bg-white uk-sticky" uk-sticky="cls-active:shadow-sm ; media: @s">
+    <ul uk-switcher="connect: #course-tabs; animation: uk-animation-fade">
+        <li class="uk-active"><a href="#" class="lg:px-2" aria-expanded="true"> Overview </a></li>
+        <li><a href="#" class="lg:px-2" aria-expanded="false"> Lesson Content </a></li>
+        <li><a href="#" class="lg:px-2" aria-expanded="false"> Quizzes </a></li>
+    </ul>
+</nav>
+<div class="uk-sticky-placeholder" style="height: 50px; margin: 0px;" hidden=""></div>
+
+<div class="container">
+
+    <div class="max-w-2xl lg:py-6 mx-auto uk-switcher" id="course-tabs" style="touch-action: pan-y pinch-zoom;">
+
+        <!--  Overview -->
+        <div class="uk-active">
+
+            <h4 class="text-2xl font-semibold"> About this course </h4>
+
+            <p> {{ $lesson->title }}</p>
+
+            <hr class="my-5">
+
+            <div class="grid lg:grid-cols-3 mt-8 gap-8">
                 <div>
-                    <h1 class="lg:text-2xl text-lg font-semibold line-clamp-1"> {{ $lesson->title }}</h1>
-                    <p> 6 views </p>
+                    <h3 class="text-lg font-semibold"> Description </h3>
+                </div>
+                <div class="col-span-2">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                        euismod
+                        tincidunt ut
+                        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim laoreet dolore
+                        magna
+                        aliquam erat
+                        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+                        suscipit
+                        lobortis
+                        nisl ut aliquip ex ea commodo consequat
+
+                        <br>
+                        <a href="#" class="text-blue-500">Read more .</a>
+                    </p>
                 </div>
 
+                <div>
+                    <h3 class="text-lg font-semibold"> What You’ll Learn </h3>
+                </div>
+                <div class="col-span-2">
+                    <ul>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Setting up the environment</li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Advanced HTML Practices</li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Build a portfolio website</li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Responsive Designs</li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Understand HTML Programming
+                        </li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Code HTML</li>
+                        <li> <i class="uil-check text-xl font-bold mr-2"></i>Start building beautiful
+                            websites</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold"> Requirements </h3>
+                </div>
+                <div class="col-span-2">
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li>Any computer will work: Windows, macOS or Linux</li>
+                        <li>Basic programming HTML and CSS.</li>
+                        <li>Basic/Minimal understanding of JavaScript</li>
+                    </ul>
+                </div>
+
+            </div>
 
 
-                <div class="text-lg font-semibold pt-2"> Description </div>
-                <p id="more-view" class="line-clamp-2">
-                    <?php
-                    $fullText = $lesson->full_text;
-                    // Style h1, h2, h3 tags with bold formatting
-                    $fullText = preg_replace('/<h1>(.*?)<\/h1>/', '<h1><strong>$1</strong></h1>', $fullText);
-                    $fullText = preg_replace('/<h2>(.*?)<\/h2>/', '<h2><strong>$1</strong></h2>', $fullText);
-                    $fullText = preg_replace('/<h3>(.*?)<\/h3>/', '<h3><strong>$1</strong></h3>', $fullText);
-                    // Render the formatted content
-                    echo nl2br($fullText);
-                    ?>
-                </p>
-                <a href="#" class="text-blue-600" id="toggle-more-view"
+        </div>
+
+        <!--  Announcements -->
+        <div>
+            <h3 class="text-xl font-semibold mb-3"> {{ $lesson->title }} </h3>
+
+            <!-- <div class="flex items-center gap-x-4 mb-5">
+                <img src="../assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                <div>
+                    <h4 class="-mb-1 text-base"> Stella Johnson</h4>
+                    <span class="text-sm"> Instructor <span class="text-gray-500"> 1 year ago </span>
+                    </span>
+                </div>
+            </div> -->
+
+
+            <p>
+                <?php
+                $fullText = $lesson->full_text;
+                // Style h1, h2, h3 tags with bold formatting
+                $fullText = preg_replace('/<h1>(.*?)<\/h1>/', '<h1><strong>$1</strong></h1>', $fullText);
+                $fullText = preg_replace('/<h2>(.*?)<\/h2>/', '<h2><strong>$1</strong></h2>', $fullText);
+                $fullText = preg_replace('/<h3>(.*?)<\/h3>/', '<h3><strong>$1</strong></h3>', $fullText);
+                // Render the formatted content
+                echo nl2br($fullText);
+                ?>
+            </p>
+
+            <a href="#" class="text-blue-600" id="toggle-more-view"
                     uk-toggle="target: #more-veiw; cls: line-clamp-2; animation: uk-animation-fade">
                     Read More
                 </a>
 
-                <hr>
-
-                <!-- Comments-->
-                <div class="text-lg font-semibold pt-2"> Lessons</div>
-
-                <div class="space-y-4 my-5">
-                    @if($purchased_course)
-                    @if ($previous_lesson)
-                    <div class="swiper-button-prev watch-prev-icon" style="left: 10px; right: initial; bottom: 0px; border-radius: 50%;">
-                        <a href="{{ route('lessons.show', [$previous_lesson->course_id, $previous_lesson->slug]) }}"> <i
-                                class="bx bx-left-arrow-alt"></i></a>
-                    </div>
-                    @endif
-                    @if ($next_lesson)
-                    <div class="swiper-button-next watch-next-icon" style="
-                right: 10px;
-                left: initial;
-                bottom: 0px;
-                border-radius: 50%;
-              ">
-                        <a href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}"><i
-                                class="bx bx-right-arrow-alt"></i></a>
-                    </div>
-                    @endif
-                    @endif
-                    <br>
-
-                    @foreach ($lesson->course->publishedLessons as $publishedLesson)
-                    @if ($publishedLesson->free_lesson)
-                    <div class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
-                        <img src="{{ Storage::url($publishedLesson->course->course_image) }}" alt=""
-                            class="rounded-full shadow w-12 h-12">
-                        <div class="flex justify-center items-center absolute right-5 top-6 space-x-1 text-yellow-500">
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        </div>
-                        <div>
-                            <h4 class="text-base m-0 font-semibold"><a
-                                    href="{{ route('lessons.show', [$publishedLesson->course_id, $publishedLesson->slug]) }}">{{
-                                    $publishedLesson->title }}</a> </h4>
-                            <span class="text-gray-700 text-sm"> </span>
-                            {{-- <p class="mt-3 md:ml-0 -ml-16">--}}
-                                {{-- Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ut laoreet
-                                dolore--}}
-                                {{-- magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                                tation--}}
-                                {{-- ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.--}}
-                                {{-- </p>--}}
 
 
-
-                        </div>
-                    </div>
-                    @else
-                    @if($purchased_course)
-                    <div class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
-                        <img src="{{ Storage::url($publishedLesson->course->course_image) }}" alt=""
-                            class="rounded-full shadow w-12 h-12">
-                        <div class="flex justify-center items-center absolute right-5 top-6 space-x-1 text-yellow-500">
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                            <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        </div>
-                        <div>
-                            <h4 class="text-base m-0 font-semibold"><a
-                                    href="{{ route('lessons.show', [$publishedLesson->course_id, $publishedLesson->slug]) }}">{{
-                                    $publishedLesson->title }}</a></h4>
-                            <span class="text-gray-700 text-sm"> </span>
-                            {{-- <p class="mt-3 md:ml-0 -ml-16">--}}
-                                {{-- Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ut laoreet
-                                dolore--}}
-                                {{-- magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                                tation--}}
-                                {{-- ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.--}}
-                                {{-- </p>--}}
-
-
-
-                        </div>
-                    </div>
-                    @endif
-                    @endif
-                    @endforeach
-
-
-                </div>
-
-{{--                <div class="flex justify-center mt-9">--}}
-{{--                    <a href="#" class="bg-gray-50 border hover:bg-gray-100 px-4 py-1.5 rounded-full text-sm">More--}}
-{{--                        Comments ..</a>--}}
-{{--                </div>--}}
-
-            </div>
         </div>
 
-        <div class="mt-4 grid gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-            <div class="space-y-2 sm:space-y-5 lg:space-y-2">
-                <div class="card">
-                    <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
-                        <div class="flex items-center space-x-2">
-
-                            <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
-                                Tests/Quizzes
-                            </h4>
-                        </div>
+        <!-- faq -->
+        <div>
+            <h3 class="text-xl font-semibold mb-3"> Course Faq </h3>
+            <ul uk-accordion="multiple: true" class="divide-y space-y-3 space-y-6 uk-accordion">
+                <li class="uk-open">
+                    <a class="uk-accordion-title font-semibold text-xl mt-4" href="#"> Html Introduction
+                    </a>
+                    <div class="uk-accordion-content mt-3" aria-hidden="false">
+                        <p> The primary goal of this quick start guide is to introduce you to
+                            Unreal
+                            Engine 4`s (UE4) development environment. By the end of this guide,
+                            you`ll
+                            know how to set up and develop C++ Projects in UE4. This guide shows
+                            you
+                            how
+                            to create a new Unreal Engine project, add a new C++ class to it,
+                            compile
+                            the project, and add an instance of a new class to your level. By
+                            the
+                            time
+                            you reach the end of this guide, you`ll be able to see your
+                            programmed
+                            Actor
+                            floating above a table in the level. </p>
                     </div>
-                    <div x-data="{expandedItem:'item-1'}"
-                        class="flex flex-col divide-y divide-slate-150 px-4 dark:divide-navy-500 sm:px-5">
-                        @if ($purchased_course)
-                        @if ($test_exists)
-                        @if (!is_null($test_result))
-                                    <br>
-                                    <div class="flex -space-x-px" style="border-top-width: 0px !important;">
-                                        <a
-                                            href="#"
-                                            class="tag rounded-r-none bg-success/10 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
-                                        >
-                                            Your test score:
-                                        </a>
-                                        <a href="#" class="badge bg-success text-white shadow-lg shadow-success/50">
-                                            {{ $test_result->test_result }}
-                                        </a>
-                                    </div>
-                                    <br>
-                        @else
-                        <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
-                            @csrf
-                            @foreach ($lesson->test->questions as $question)
-                            <div x-data="accordionItem('item-1')">
-                                <div @click="expanded = !expanded"
-                                    class="flex cursor-pointer items-center justify-between py-4 text-base font-medium text-slate-700 dark:text-navy-100">
-                                    <p>{{ $loop->iteration }}. {{ strip_tags($question->question) }}</p>
-                                    <div :class="expanded &amp;&amp; '-rotate-180'"
-                                        class="text-sm font-normal leading-none text-slate-400 transition-transform duration-300 dark:text-navy-300 -rotate-180">
-                                        <i class="fas fa-chevron-down"></i>
-                                    </div>
-                                </div>
-
-                                <div x-collapse="" x-show="expanded">
-                                    <div class="pb-4">
-                                        @foreach ($question->options as $option)
-                                        <p>
-
-                                            <input type="radio" name="questions[{{ $question->id }}]"
-                                                value="{{ $option->id }}" style="margin-bottom: 0.8rem" />
-{{--                                                {{ strip_tags($option->option_text) }}--}}
-                                                @php
-                                                    $text_without_p_tags = preg_replace('/<\/?p>/', '', $option->option_text);
-                                                @endphp
-                                                {{ $text_without_p_tags }}
-                                            <br />
-
-                                        </p>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            <div class="flex space-x-2 pt-3">
-                                <button class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                                        style="border: none; padding: 0.4rem 1.4rem; border-radius: 1rem;margin-top: 1rem;">Submit
-                                    Result</button>
-                            </div>
-                            <br>
-                        </form>
-                        @endif
-                        @endif
-                        @endif
+                </li>
+                <li>
+                    <a class="uk-accordion-title font-semibold text-xl mt-4" href="#"> Your First
+                        webpage</a>
+                    <div class="uk-accordion-content mt-3" hidden="" aria-hidden="true">
+                        <p> The primary goal of this quick start guide is to introduce you to
+                            Unreal
+                            Engine 4`s (UE4) development environment. By the end of this guide,
+                            you`ll
+                            know how to set up and develop C++ Projects in UE4. This guide shows
+                            you
+                            how
+                            to create a new Unreal Engine project, add a new C++ class to it,
+                            compile
+                            the project, and add an instance of a new class to your level. By
+                            the
+                            time
+                            you reach the end of this guide, you`ll be able to see your
+                            programmed
+                            Actor
+                            floating above a table in the level. </p>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title font-semibold text-xl mt-4" href="#"> Some Special Tags
+                    </a>
+                    <div class="uk-accordion-content mt-3" hidden="" aria-hidden="true">
+                        <p> The primary goal of this quick start guide is to introduce you to
+                            Unreal
+                            Engine 4`s (UE4) development environment. By the end of this guide,
+                            you`ll
+                            know how to set up and develop C++ Projects in UE4. This guide shows
+                            you
+                            how
+                            to create a new Unreal Engine project, add a new C++ class to it,
+                            compile
+                            the project, and add an instance of a new class to your level. By
+                            the
+                            time
+                            you reach the end of this guide, you`ll be able to see your
+                            programmed
+                            Actor
+                            floating above a table in the level. </p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title font-semibold text-xl mt-4" href="#"> Html Introduction
+                    </a>
+                    <div class="uk-accordion-content mt-3" hidden="" aria-hidden="true">
+                        <p> The primary goal of this quick start guide is to introduce you to
+                            Unreal
+                            Engine 4`s (UE4) development environment. By the end of this guide,
+                            you`ll
+                            know how to set up and develop C++ Projects in UE4. This guide shows
+                            you
+                            how
+                            to create a new Unreal Engine project, add a new C++ class to it,
+                            compile
+                            the project, and add an instance of a new class to your level. By
+                            the
+                            time
+                            you reach the end of this guide, you`ll be able to see your
+                            programmed
+                            Actor
+                            floating above a table in the level. </p>
+                    </div>
+                </li>
+            </ul>
         </div>
+
+
 
     </div>
-
-
 </div>
 
-<style>
-    @media (min-width: 768px) {
-        .md\:m-0 {
-            margin: 0;
-        }
-    }
 
-    .p-6 {
-        padding: 1.5rem;
-    }
 
-    .tube-card {
-        --tw-bg-opacity: 1;
-        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-        border-radius: .5rem;
-        border-width: 1px;
-    }
-
-    .embed-video {
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        position: relative;
-        height: 0;
-    }
-
-    .embed-video iframe {
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        /* padding: 20px; */
-    }
-
-    audio,
-    canvas,
-    embed,
-    iframe,
-    img,
-    object,
-    svg,
-    video {
-        display: block;
-        vertical-align: middle;
-    }
-
-    .line-clamp-2 {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        /* number of lines to show */
-        -webkit-box-orient: vertical;
-    }
-</style>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-            const moreView = document.getElementById('more-view');
-            const toggleMoreView = document.getElementById('toggle-more-view');
-
-            toggleMoreView.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (moreView.classList.contains('line-clamp-2')) {
-                    moreView.classList.remove('line-clamp-2');
-                    toggleMoreView.textContent = 'Read Less';
-                } else {
-                    moreView.classList.add('line-clamp-2');
-                    toggleMoreView.textContent = 'Read More';
-                }
-            });
-        });
-</script>
 
 @endsection

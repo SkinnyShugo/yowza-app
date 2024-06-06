@@ -40,7 +40,8 @@
         localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
-
+    @vite(['resources/js/app.js'])
+  
 </head>
 
 <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
@@ -117,6 +118,7 @@
         @endif
     });
 </script>
+
 <script src="https://cdn.tiny.cloud/1/7848drnfikg76o7xgogp561fchodvpdj4rz5aze1ze188tuw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </body>
 <!-- Mirrored from lineone.piniastudio.com/dashboards-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 14:30:37 GMT -->
