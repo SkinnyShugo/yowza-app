@@ -39,7 +39,7 @@
         localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
-    @vite(['resources/js/app.js'])
+    <!-- @vite(['resources/js/app.js']) -->
 </head>
 
 <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
