@@ -204,3 +204,6 @@ Route::get('lesson-course', function() {
     return view('yowzacampus.lessons.home');
 });
 
+Route::get('/test-sentry', function () {
+    throw new Exception('Testing Sentry...');
+});
