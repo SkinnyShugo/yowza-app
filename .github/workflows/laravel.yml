@@ -79,7 +79,7 @@ jobs:
         server-dir: /public_html/
         protocol: ftp
         port: 21
-        timeout: 60000
+        timeout: 120000
         log-level: verbose
         exclude: |
           **/node_modules/**,
@@ -91,3 +91,6 @@ jobs:
     - name: Keep-Alive Command
       run: |
           while true; do echo "Keeping connection alive"; sleep 300; done &
+
+    - name: Final Permissions Fix
+      run: chmod -R 775 /public_html/

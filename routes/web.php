@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('yowza-campus', [\App\Http\Controllers\Yowza\HomeController::class, 'index']);
     Route::get('yowza-campus-courses', [\App\Http\Controllers\Yowza\CourseController::class, 'index']);
     Route::get('yowza-campus-courses/{slug}', [App\Http\Controllers\Yowza\CourseController::class, 'show'])->name('course.show');
-    Route::post('yowza-campus-courses/{course_id}/rating', [App\Http\Controllers\Yowza\CourseController::class, 'rating'])->name('courses.rating');
+    Route::post('yowza-campus-courses/{course_id}/rating', [App\Http\Controllers\Yowza\CourseController::class, 'rating'])->name('course.rating');
     Route::post('courses/payment', [App\Http\Controllers\Yowza\CourseController::class, 'payment'])->name('courses.payment');
     Route::post('course/{course_id}/rating', [App\Http\Controllers\Yowza\CourseController::class, 'rating'])->name('courses.rating');
     Route::get('lessons/{course_id}/{slug}', [App\Http\Controllers\Yowza\LessonController::class, 'show'])->name('lessons.show');
@@ -146,7 +146,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/smmeworkspace', \App\Http\Controllers\SMME\SMMEWorkController::class);
         Route::post('/smmeworkspace/{workspace}/join', [SMMEWorkController::class, 'join'])->name('workspaces.join');
         Route::resource('/organization-workspace', OrganisationWorkspaceController::class);
-        Route::post('/organization-workspace/{workspace}/join', [OrganisationWorkspaceController::class, 'join'])->name('workspaces.join');
+        Route::post('/organization-workspace/{workspace}/join', [OrganisationWorkspaceController::class, 'join'])->name('workspace.join');
         Route::resource('/document-library', DocumentLibraryController::class);
         Route::resource('yowza-campus', \App\Http\Controllers\Admin\YowzaCampusController::class);
         Route::resource('discover', \App\Http\Controllers\DiscoverController::class);
