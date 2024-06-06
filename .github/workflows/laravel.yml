@@ -92,7 +92,3 @@ jobs:
     - name: Keep-Alive Command
       run: |
           while true; do echo "Keeping connection alive"; sleep 300; done &
-      
-      # retry: 
-      #   max_attempts: 5
-      #   delay: 30000
