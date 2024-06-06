@@ -2,7 +2,8 @@
 <html lang="en">
 
 <!-- Mirrored from lineone.piniastudio.com/dashboards-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 14:30:36 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <!-- Meta tags  -->
     <meta charset="UTF-8" />
@@ -39,7 +40,7 @@
         localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
-    <!-- @vite(['resources/js/app.js']) -->
+
 </head>
 
 <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
