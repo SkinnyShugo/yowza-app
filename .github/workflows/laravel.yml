@@ -50,10 +50,10 @@ jobs:
     - name: Compile Css and Js Assets
       run: npm run build
 
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
+    # - name: Create Database
+    #   run: |
+    #     mkdir -p database
+    #     touch database/database.sqlite
     # - name: Create Database
     #   run: |
     #     mkdir -p database
@@ -77,8 +77,10 @@ jobs:
         username: devyodgpja
         password: fvA0KV8FksSuTI9rT0fv
         server-dir: /public_html/
-        retries: 5
-        retry-backoff: 3000
-        protocol: ftps
+        protocol: ftp
         port: 21
         timeout: 60
+      
+      # retry: 
+      #   max_attempts: 5
+      #   delay: 30000
