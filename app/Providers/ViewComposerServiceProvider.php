@@ -14,10 +14,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
-        View::composer('*', function ($view) {
-            $userId = Auth::id();
-            $view->with('userId', $userId);
-        });
+       
     }
 
     /**
@@ -26,5 +23,10 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        View::composer('*', function ($view) {
+            // Check if the user is authenticated before accessing the ID
+            $userId = Auth::id();
+            $view->with('userId', $userId);
+        });
     }
 }

@@ -27,6 +27,7 @@ use App\Http\Controllers\RSVPController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MarketplaceCategoryController;
 use App\Http\Controllers\Contact\ContactFormController;
+use App\Http\Controllers\UserProfileImageController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -43,6 +44,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('course/{course_id}/rating', [App\Http\Controllers\Yowza\CourseController::class, 'rating'])->name('courses.rating');
     Route::get('lessons/{course_id}/{slug}', [App\Http\Controllers\Yowza\LessonController::class, 'show'])->name('lessons.show');
     Route::post('lesson/{slug}/test', [App\Http\Controllers\Yowza\LessonController::class, 'test'])->name('lessons.test');
+
+    //Users profile
+    Route::get('profile', [UserController::class, 'editProfile'])->name('profile.edit');
+    Route::post('profile', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::resource('profile-image', UserProfileImageController::class)->only(['store']);
 
     //Contact Form for user loggedIn
     Route::get('/contact-form', [ContactFormController::class, 'showContactForm'])->name('contact-form');
@@ -92,7 +98,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //      Route::get('document-library/download/{id}', 'DocumentLibraryController@download');
         Route::get('download/{id}', 'App\Http\Controllers\Admin\DocumentLibraryController@downloadFile')->name('download');
 
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('users', UserController::class);
+        // Route::get('/user/{$id}/edit', 'App\Http\ControllersAdmin\UserController@edit')->name('user.edit');
+
+        
+
+        // Route::get('user/{user}/test', [UserController::class, 'edit'])->name('admin.user2.edit');
+
         //        Route::get('/admin/{prefix}/users/{user}/edit', 'UserController@edit')->name('admin.users.edit');
 
 
@@ -191,8 +203,8 @@ Route::get('marketplace_categories', [MarketplaceCategoryController::class, 'ind
 // });
 
 Illuminate\Support\Facades\Auth::routes(['verify' => true]);
-Route::get('/create-workspace', 'OrganisationWorkspaceController@create')->name('createWorkspace');
-Route::post('/create-workspace', 'OrganisationWorkspaceController@store')->name('storeWorkspace');
+// Route::get('/create-workspace', 'OrganisationWorkspaceController@create')->name('createWorkspace');
+// Route::post('/create-workspace', 'OrganisationWorkspaceController@store')->name('storeWorkspace');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -200,7 +212,7 @@ Route::get('/workspace-test', function () {
     return view('workspace.register_workspace');
 });
 
-Route::get('lesson-course', function() {
+Route::get('lesson-course', function () {
     return view('yowzacampus.lessons.home');
 });
 

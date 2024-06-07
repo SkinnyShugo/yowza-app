@@ -68,8 +68,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function getRouteKeyName()
+    {
+        return 'id'; // Use the appropriate key for route model binding
+    }
 
-
+    public function profileImage()
+    {
+        return $this->hasOne(UserProfileImage::class);
+    }
+    
 
 
 

@@ -107,7 +107,7 @@
                     <p>www.konnor.com</p>
                 </div>
             </div>
-            <a href="{{ route('admin.users.edit', ['prefix' => $prefix, 'user' => $user->id]) }}" class="btn mt-5 space-x-2 rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+            <a href="{{ route('admin.users.edit', ['prefix'=> 'admin', $user->id]) }}" class="btn mt-5 space-x-2 rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                 </svg>
