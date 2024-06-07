@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
+use App\Models\UserProfileImage;
 
 
 class UserController extends Controller
@@ -197,7 +198,10 @@ class UserController extends Controller
     public function editProfile()
     {
         $user = Auth::user();
-        return view('users.profile.edit', compact('user'));
+
+        $profileImage = UserProfileImage::where('user_id', $user->id)->first();
+
+        return view('users.profile.edit', compact('user', 'profileImage'));
     }
 
     public function updateProfile(Request $request)

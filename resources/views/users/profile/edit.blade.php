@@ -26,7 +26,7 @@
             <div class="flex items-center space-x-4">
                 <div class="avatar size-14">
                     <img class="mask is-squircle"
-                        src="{{ $user->profile_picture ? Storage::url($user->profile_picture) : asset('backend/images/avatar/black-afro.png') }}"
+                        src="{{ Storage::url($profileImage->profile_picture) }}"
                         alt="avatar">
                     <div x-data="{showModal:false}"
                         class="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
@@ -58,19 +58,24 @@
                                         x-transition:leave-start="opacity-100 [transform:translate3d(0,0,0)]"
                                         x-transition:leave-end="opacity-0 [transform:translate3d(0,1rem,0)]">
                                         <div class="avatar size-20">
-                                            <img class="rounded-full"
-                                                src="{{ $user->profile_picture ? Storage::url($user->profile_picture) : asset('backend/images/avatar/black-afro.png') }}"
-                                                alt="avatar" />
+                                            @if ($profileImage)
+                                                <img src="{{ Storage::url($profileImage->profile_picture) }}"
+                                                    alt="Profile Image">
+                                            @else
+                                                <img class="rounded-full"
+                                                    src="{{ asset('backend/images/avatar/black-afro.png') }}"
+                                                    alt="avatar" />
+                                            @endif
+
                                             <div
                                                 class="absolute right-0 m-1 size-4 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
                                             </div>
                                         </div>
                                         <div class="mt-4 px-4 sm:px-12">
                                             <div class="form-group">
-                                                <div class="filepond fp-bordered">
-                                                    <input type="file" name="profile_picture" id="profile_picture"
-                                                        x-init="$el._x_filepond = FilePond.create($el)" />
-                                                </div>
+                                                <label for="profile_picture">Profile Picture</label>
+                                                <input type="file" name="profile_picture" id="profile_picture"
+                                                    class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="my-4 mt-16 h-px bg-slate-200 dark:bg-navy-500"></div>
