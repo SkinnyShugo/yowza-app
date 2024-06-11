@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "devianl2/laravel-scorm": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "inspector-apm/inspector-laravel": "^4.8",
         "jenssegers/agent": "^2.6",
