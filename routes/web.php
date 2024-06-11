@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProgressController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\SMME\SMMEWorkController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ use App\Http\Controllers\MarketplaceCategoryController;
 use App\Http\Controllers\Contact\ContactFormController;
 use App\Http\Controllers\UserProfileImageController;
 
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -44,6 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('course/{course_id}/rating', [App\Http\Controllers\Yowza\CourseController::class, 'rating'])->name('courses.rating');
     Route::get('lessons/{course_id}/{slug}', [App\Http\Controllers\Yowza\LessonController::class, 'show'])->name('lessons.show');
     Route::post('lesson/{slug}/test', [App\Http\Controllers\Yowza\LessonController::class, 'test'])->name('lessons.test');
+    Route::post('/courses/{course}/lessons/{lesson}/complete', [ProgressController::class, 'markComplete'])->name('lessons.complete');
+
 
     //Users profile
     Route::get('profile', [UserController::class, 'editProfile'])->name('profile.edit');
@@ -53,6 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Contact Form for user loggedIn
     Route::get('/contact-form', [ContactFormController::class, 'showContactForm'])->name('contact-form');
     Route::post('/contact-form', [ContactFormController::class, 'submit'])->name('contact-form.submit');
+
+    Route::resource('scorm', \App\Http\Controllers\Admin\ScormController::class);
 
     Route::group(['middleware' => ['isAdmin'], 'prefix' => 'admin/{prefix}', 'as' => 'admin.'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -132,6 +138,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('question_options_perma_del/{id}', [\App\Http\Controllers\Admin\QuestionOptionController::class, 'perma_del'])->name('question_options.perma_del');
 
         Route::resource('yowza-campus', \App\Http\Controllers\Admin\YowzaCampusController::class);
+
+        Route::resource('scorm', \App\Http\Controllers\Admin\ScormController::class);
     });
 
     // Routes for Individual

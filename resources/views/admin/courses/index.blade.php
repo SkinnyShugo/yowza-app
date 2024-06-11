@@ -67,11 +67,11 @@
                         <thead>
                         <tr>
 
-                            @if(auth()->user()->isAdmin())
+                        
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                Teacher/Coach Name
+                                Course Category
                             </th>
-                            @endif
+                        
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Course Name
                             </th>
@@ -95,20 +95,19 @@
                         @forelse($courses as $key => $course)
                         <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500" data-entry-id="{{ $course->id }}">
 
-                            @if(auth()->user()->isAdmin())
+                  
                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                @foreach ($course->teachers as $singleTeachers)
+                              
                                 <div class="flex items-center space-x-4">
                                     <div class="avatar size-9">
-                                        <img class="mask is-squircle" src="images/avatar/avatar-20.jpg" alt="avatar">
+                                        <img class="mask is-squircle" src="{{ asset('storage/' . $course->course_category_image) }}" alt="avatar">
                                     </div>
 
-                                    <span class="font-medium text-slate-700 dark:text-navy-100">{{ $singleTeachers->name }}
-                          </span>
+                                    <span class="font-medium text-slate-700 dark:text-navy-100">{{ $course->course_category}}</span>
                                 </div>
-                                @endforeach
+                              
                             </td>
-                            @endif
+                       
                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                 <p class="w-48 overflow-hidden text-ellipsis text-xs+">
                                     {{ $course->title ?? '' }}.

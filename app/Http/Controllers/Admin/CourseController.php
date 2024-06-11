@@ -67,7 +67,7 @@ class CourseController extends Controller
     }
 
 
-//    public function store(Request $request)
+    //    public function store(Request $request)
 //    {
 //        $data = $request->all();
 //        $data['course_image'] = $request->file('course_image')->store(
@@ -90,12 +90,19 @@ class CourseController extends Controller
             'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'start_date' => 'nullable|date',
             'published' => 'nullable|boolean',
+            'course_category' => 'required|in:Finance,Management,Marketing and Sales,Personal Growth,Customer Service,Funding,Entrepreneurship',
+            'course_category_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('course_image')) {
             $data['course_image'] = $request->file('course_image')->store('images/courses', 'public');
+        }
+
+        if ($request->hasFile('course_category_image')) {
+            $courseCategoryImagePath = $request->file('course_category_image')->store('images/course_categories', 'public');
+            $data['course_category_image'] = $courseCategoryImagePath;
         }
 
         $data['user_id'] = Auth::id(); // Assign the authenticated user's ID to the course
@@ -105,7 +112,7 @@ class CourseController extends Controller
         return response()->json($course, 201);
     }
 
-//    public function store(Request $request)
+    //    public function store(Request $request)
 //    {
 //        // Validate the request data
 //        $request->validate([
@@ -160,16 +167,17 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $data = $request->all();
-        if($request->has('course_image')){
+        if ($request->has('course_image')) {
             Storage::disk('public')->delete($course->course_image);
 
             $data['course_image'] = $request->file('course_image')->store(
-                'images/courses', 'public'
+                'images/courses',
+                'public'
             );
         }
 
         $course->update($data);
-        $teachers = auth()->user()->isAdmin() ? array_filter((array)$request->input('teachers')) : [auth()->id()];
+        $teachers = auth()->user()->isAdmin() ? array_filter((array) $request->input('teachers')) : [auth()->id()];
         $course->teachers()->sync($teachers);
 
         return redirect()->route('admin.courses.index');
@@ -177,7 +185,7 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
-        if (! Gate::allows('course_delete')) {
+        if (!Gate::allows('course_delete')) {
             return abort(401);
         }
 
@@ -188,7 +196,7 @@ class CourseController extends Controller
 
     public function restore($id)
     {
-        if (! Gate::allows('course_delete')) {
+        if (!Gate::allows('course_delete')) {
             return abort(401);
         }
 
@@ -200,7 +208,7 @@ class CourseController extends Controller
 
     public function perma_del($id)
     {
-        if (! Gate::allows('course_delete')) {
+        if (!Gate::allows('course_delete')) {
             return abort(401);
         }
 

@@ -258,7 +258,8 @@
                 </li>
             </ul>
         </div>
-
+            
+        <form action="{{ route('lessons.complete', [$course->id, $lesson->id, 'lesson']) }}" method="POST">
 
 
     </div>
