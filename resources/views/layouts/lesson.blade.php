@@ -657,15 +657,28 @@
                             <div class="simplebar-content"
                                 style="padding: 0px 15px 15px; height: 100%; overflow: hidden scroll;">
 
-                                <div class="lg:inline hidden">
-                                    <div class="relative overflow-hidden rounded-md bg-gray-200 h-1 mt-4">
-                                        <div class="w-2/4 h-full bg-green-500"></div>
+                                @if(!$lesson->progress->completed)
+                                    <div class="lg:inline hidden">
+                                        <div class="relative overflow-hidden rounded-md bg-gray-200 h-1 mt-4">
+                                            <div class="w-2/4 h-full bg-green-500"
+                                                style="width: {{ $completionPercentage }}%;"></div>
+                                        </div>
+                                        <div class="mt-2 mb-3 text-sm border-b pb-3">
+                                            <div>{{ $completionPercentage }}% Complete</div>
+                                            <div>Last activity on {{ $lastActivityDate }}</div>
+                                        </div>
                                     </div>
-                                    <div class="mt-2 mb-3 text-sm border-b pb-3">
-                                        <div> 0% Complete</div>
-                                        <div> Last activity on April 20, 2021</div>
+                                @else
+                                    <div class="lg:inline hidden">
+                                        <div class="relative overflow-hidden rounded-md bg-gray-200 h-1 mt-4">
+                                            <div class="w-2/4 h-full bg-green-500"></div>
+                                        </div>
+                                        <div class="mt-2 mb-3 text-sm border-b pb-3">
+                                            <div> 0% Complete</div>
+                                            <div> Lesson completed!</div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
 
                                 <div id="curriculum">
                                     <div uk-accordion="multiple: true" class="divide-y space-y-3 uk-accordion">
